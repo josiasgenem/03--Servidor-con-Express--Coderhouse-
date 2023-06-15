@@ -2,7 +2,8 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { productManager } from './helpers/productManager.js';
+import { ProductManager } from './helpers/productManager.js';
+const productManager = new ProductManager('./src/helpers/usuarios.json')
 
 const app = express()
 const port = (process.env.STATUS === 'production' ? 
@@ -29,6 +30,7 @@ app.get('/products/:pid', async (req, res) => {
     
     if(parseInt(pid)) product = await productManager.getProductById(parseInt(pid));
 
+    console.log(product);
     res.status(200).send(product);
 })
 

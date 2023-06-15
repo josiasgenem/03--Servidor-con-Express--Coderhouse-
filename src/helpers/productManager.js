@@ -71,8 +71,10 @@ export class ProductManager {
         
         // Si no existe retorna un array vacío.
         if (product.length === 0) {
-            
-            throw new Error("---> getProductById: Not found!");
+            return {
+                error: "Product Not Found!",
+                productId: id
+            }
         }
         
         // Retorna el producto buscado por Id como objeto.
@@ -156,9 +158,9 @@ export class ProductManager {
 
 /* ----------------------------- Test Propio ------------------------------------- */
 
-export const productManager = new ProductManager('./helpers/usuarios.json');
-
 /*
+const productManager = new ProductManager('./helpers/usuarios.json');
+
 (async function() {
     await productManager.addProduct({
         title: "Zapatillas Adidas", 
